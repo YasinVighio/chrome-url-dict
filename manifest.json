@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "Chrome URL Dictionary",
+    "description": "Adds specific string to the current url",
+    "version": "1.0",
+    "permissions": ["storage", "scripting", "tabs"],
+    "host_permissions": [
+      "<all_urls>"
+    ],
+    "action": {
+      "default_popup": "src/extension/main.html"
+    }
+  }
