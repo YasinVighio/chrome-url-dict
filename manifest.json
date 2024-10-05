@@ -8,6 +8,6 @@
       "<all_urls>"
     ],
     "action": {
-      "default_popup": "src/extension/main.html"
+      "default_popup": "src/main/main.html"
     }
   }

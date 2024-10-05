@@ -1,0 +1,46 @@
+.extBody{
+    background-color: blue;
+    width: 300px;
+    height: 300px;
+}
+
+.buttonDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.funcBtn{
+    background-color: navy;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    border: 0px;
+    padding: 10px;
+}
+
+.dataContainer{
+    height: 280px;
+    width: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse; 
+    table-layout: fixed;
+}
+.dataRow {
+    color: white;
+    border: 1px solid white;
+}
+
+.dataTable td {
+    text-align: center;
+    padding: 10px; 
+    width: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}

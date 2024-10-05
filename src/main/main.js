@@ -16,7 +16,7 @@ function addString() {
             savedUrlStrings[strName] = strVal;
 
             chrome.storage.local.set({ [storageName]: savedUrlStrings }, function() {
-                console.log(`Saved: ${storageName} = ${JSON.stringify(savedUrlStrings)}`);
+                listSavedStrings();
             });
         });
     } else {
@@ -33,9 +33,11 @@ function listSavedStrings() {
         if (validateStorageData(data)) {
             var savedUrlStrings = data[storageName] || {};
             if(isDataObjectEmpty(savedUrlStrings)){
+                hideShowTableHead(false);
                 stringContainer.innerHTML = "No strings found";
                 return;
             }
+            hideShowTableHead(true);
             showSavedStrings(stringContainer, savedUrlStrings);
         } else {
             stringContainer.innerHTML = "No strings found";
@@ -62,16 +64,30 @@ function validateStorageData(data) {
 }
 
 function showSavedStrings(stringListContainer, savedStrings) {
+    stringListContainer.innerHTML = "";
+
     for (var key in savedStrings) {
         if (savedStrings.hasOwnProperty(key)) {
-            var li = document.createElement("li");
-            li.textContent = key;
-            li.appendChild(createAddButton(savedStrings, key));
-            li.appendChild(createDeleteBtn(key));
-            stringListContainer.appendChild(li);
+            var tr = document.createElement("tr");
+            tr.classList.add("dataRow");
+
+            var nameTd = document.createElement("td");
+            nameTd.textContent = key;
+            tr.appendChild(nameTd);
+
+            var addTd = document.createElement("td");
+            addTd.appendChild(createAddButton(savedStrings, key));
+            tr.appendChild(addTd);
+
+            var deleteTd = document.createElement("td");
+            deleteTd.appendChild(createDeleteBtn(key));
+            tr.appendChild(deleteTd);
+
+            stringListContainer.appendChild(tr);
         }
     }
 }
+
 
 function createAddButton(savedUrlStrings, stringKey) {
     let addButton = document.createElement("button");
@@ -129,4 +145,13 @@ function deleteString(strName) {
 
 function isDataObjectEmpty(dataObject) {
     return dataObject === null || Object.keys(dataObject).length === 0;
+}
+
+function hideShowTableHead(show){
+    let th = document.getElementById("tableHead");
+    if(show){
+        th.style.display="";
+    } else {
+        th.style.display="none";
+    }
 }
