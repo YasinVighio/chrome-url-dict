@@ -29,7 +29,7 @@ function listSavedStrings() {
     .then(data => {
         var stringContainer = document.getElementById("stringContainer");
         stringContainer.innerHTML = "";
-        
+
         if (validateStorageData(data)) {
             var savedUrlStrings = data[storageName] || {};
             if(isDataObjectEmpty(savedUrlStrings)){
@@ -97,8 +97,11 @@ function createAddButton(savedUrlStrings, stringKey) {
                 let currentTab = tabs[0];
                 let newUrl = new URL(currentTab.url);
                 
+                if (!newUrl.pathname.endsWith("/")) {
+                    newUrl.pathname += "/";
+                }
+                
                 newUrl.pathname += savedUrlStrings[stringKey];
-                console.log(`New URL: ${newUrl.toString()}`);
 
                 chrome.scripting.executeScript({
                     target: { tabId: currentTab.id },
