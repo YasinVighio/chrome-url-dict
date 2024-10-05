@@ -28,16 +28,14 @@ function listSavedStrings() {
     loadStorage(storageName)
     .then(data => {
         var stringContainer = document.getElementById("stringContainer");
-        stringContainer.innerHTML = ""; // Clear previous content
-
+        stringContainer.innerHTML = "";
+        
         if (validateStorageData(data)) {
             var savedUrlStrings = data[storageName] || {};
             if(isDataObjectEmpty(savedUrlStrings)){
-                //hideShowTableHead(false);
                 stringContainer.innerHTML = "No strings found";
                 return;
             }
-            //hideShowTableHead(true);
             showSavedStrings(stringContainer, savedUrlStrings);
         } else {
             stringContainer.innerHTML = "No strings found";
@@ -147,13 +145,4 @@ function deleteString(strName) {
 
 function isDataObjectEmpty(dataObject) {
     return dataObject === null || Object.keys(dataObject).length === 0;
-}
-
-function hideShowTableHead(show){
-    let th = document.getElementById("tableHead");
-    if(show){
-        th.style.display="";
-    } else {
-        th.style.display="none";
-    }
 }
