@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", onExtensionLoad);
 
 function onExtensionLoad() {
     document.getElementById("addStringBtn").addEventListener('click', addString);
-    document.getElementById("showStringBtn").addEventListener('click', listSavedStrings);
+    listSavedStrings();
 }
 
 function addString() {
@@ -33,11 +33,11 @@ function listSavedStrings() {
         if (validateStorageData(data)) {
             var savedUrlStrings = data[storageName] || {};
             if(isDataObjectEmpty(savedUrlStrings)){
-                hideShowTableHead(false);
+                //hideShowTableHead(false);
                 stringContainer.innerHTML = "No strings found";
                 return;
             }
-            hideShowTableHead(true);
+            //hideShowTableHead(true);
             showSavedStrings(stringContainer, savedUrlStrings);
         } else {
             stringContainer.innerHTML = "No strings found";
@@ -91,7 +91,8 @@ function showSavedStrings(stringListContainer, savedStrings) {
 
 function createAddButton(savedUrlStrings, stringKey) {
     let addButton = document.createElement("button");
-    addButton.textContent = "+";
+    addButton.classList.add("funcBtn");
+    addButton.textContent = "Add to URL";
     addButton.addEventListener("click", (function(stringKey) {
         return function() {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
@@ -117,7 +118,8 @@ function createAddButton(savedUrlStrings, stringKey) {
 
 function createDeleteBtn(stringKey) {
     let deleteButton = document.createElement("button");
-    deleteButton.textContent = "-";
+    deleteButton.classList.add("funcBtn");
+    deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", (function(stringKey) {
         return function() {
             deleteString(stringKey).then(() => {

@@ -1,13 +1,7 @@
 .extBody{
     background-color: blue;
     width: 300px;
-    height: 300px;
-}
-
-.buttonDiv{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 200px;
 }
 
 .funcBtn{
@@ -15,13 +9,14 @@
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 10px;
-    border: 0px;
-    padding: 10px;
+    border: 1px solid white;
+    padding: 5px;
+    margin: 5px;
 }
 
 .dataContainer{
-    height: 280px;
-    width: 300px;
+    height: 80%;
+    width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -31,9 +26,17 @@
     border-collapse: collapse; 
     table-layout: fixed;
 }
+
+.dataTable thead {
+    background-color: navy;
+    border: 1px solid navy;
+    font-size: 15px;
+    color: white;
+}
+
 .dataRow {
     color: white;
-    border: 1px solid white;
+    border: 1px solid navy;
 }
 
 .dataTable td {
@@ -43,4 +46,21 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; 
+}
+
+.dataContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dataContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dataContainer::-webkit-scrollbar-thumb {
+    background-color: skyblue; 
+    border-radius: 10px; 
+}
+
+.dataContainer::-webkit-scrollbar-thumb:hover {
+    background-color: deepskyblue; 
 }
